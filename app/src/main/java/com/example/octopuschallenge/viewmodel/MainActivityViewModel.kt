@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.model.CatResponse
+import com.example.octopuschallenge.API_KEY
 import com.example.octopuschallenge.network.CatService
 import kotlinx.coroutines.*
 import retrofit2.Call
@@ -25,7 +26,7 @@ class MainActivityViewModel : ViewModel() {
             val breedList = CatService.getInstance()
 
             try {
-                catData = breedList.getAllBreeds()
+                catData = breedList.getAllBreeds(API_KEY)
                 loadingState = false
             } catch (e: Exception) {
                 errorMessage = e.message.toString()
