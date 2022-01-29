@@ -9,14 +9,14 @@ import retrofit2.http.GET
 interface CatService {
 
     @GET("breeds")
-    fun getAllBreeds() : Call<CatResponse>
+    suspend fun getAllBreeds() : List<CatResponse>
 
     companion object{
         const val BASE_URL = "https://api.thecatapi.com/v1/"
 
         private var catService: CatService? = null
 
-        fun getInstance() : CatService? {
+        fun getInstance() : CatService {
             if (catService == null) {
                 catService = Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -25,7 +25,7 @@ interface CatService {
                     .create(CatService::class.java)
             }
 
-            return catService
+            return catService!!
         }
     }
 
