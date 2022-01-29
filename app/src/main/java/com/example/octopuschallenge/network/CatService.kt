@@ -1,18 +1,21 @@
 package com.example.octopuschallenge.network
 
 import com.example.model.CatResponse
+import com.example.octopuschallenge.BASE_URL
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface CatService {
 
     @GET("breeds")
-    suspend fun getAllBreeds() : List<CatResponse>
+    suspend fun getAllBreeds(
+        @Query("api_key") apiKey: String
+    ) : List<CatResponse>
 
     companion object{
-        const val BASE_URL = "https://api.thecatapi.com/v1/"
 
         private var catService: CatService? = null
 
