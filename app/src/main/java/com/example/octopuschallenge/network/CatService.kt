@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface CatService {
@@ -17,8 +18,10 @@ interface CatService {
 
     @GET("breeds/search")
     suspend fun getBreedInfo(
-        @Query("q") query: String)
-    : CatResponse
+        @Query("q") query: String,
+        @Header("x-api-key") apiKey: String
+    )
+    : List<CatResponse>
 
 
     companion object{

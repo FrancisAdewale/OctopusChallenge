@@ -97,8 +97,6 @@ fun BreedItem(breed: CatResponse,
     val context = LocalContext.current
     val intent = Intent(context, BreedInformation::class.java)
 
-
-
     val backgroundColour =
         if(index == selecetedIndex) MaterialTheme.colors.primary
         else MaterialTheme.colors.background
@@ -109,7 +107,6 @@ fun BreedItem(breed: CatResponse,
             .fillMaxWidth()
             .clickable {
                 onClick(index)
-                Log.d("BreedName", breed.name!!)
                 intent.putExtra(BREED_NAME_KEY, breed.name!!)
                 context.startActivity(intent)
             }
