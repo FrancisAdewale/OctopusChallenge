@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OctopusChallenge</string>
+    <string name="title_activity_breed_information">BreedInformation</string>
 </resources>

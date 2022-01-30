@@ -15,6 +15,12 @@ interface CatService {
         @Query("api_key") apiKey: String
     ) : List<CatResponse>
 
+    @GET("breeds/search")
+    suspend fun getBreedInfo(
+        @Query("q") query: String)
+    : CatResponse
+
+
     companion object{
 
         private var catService: CatService? = null

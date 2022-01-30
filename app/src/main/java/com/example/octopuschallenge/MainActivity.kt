@@ -1,6 +1,8 @@
 package com.example.octopuschallenge
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -16,6 +18,7 @@ import androidx.compose.runtime.*
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -90,6 +93,12 @@ fun BreedItem(breed: CatResponse,
               index: Int,
               selecetedIndex: Int,
               onClick :(Int) -> Unit) {
+
+    val context = LocalContext.current
+    val intent = Intent(context, BreedInformation::class.java)
+
+
+
     val backgroundColour =
         if(index == selecetedIndex) MaterialTheme.colors.primary
         else MaterialTheme.colors.background
@@ -98,7 +107,12 @@ fun BreedItem(breed: CatResponse,
         modifier = Modifier
             .padding(8.dp, 4.dp)
             .fillMaxWidth()
-            .clickable { onClick(index) }
+            .clickable {
+                onClick(index)
+                Log.d("BreedName", breed.name!!)
+                intent.putExtra(BREED_NAME_KEY, breed.name!!)
+                context.startActivity(intent)
+            }
             .height(110.dp),
         shape =  RoundedCornerShape(8.dp),
         elevation = 4.dp
@@ -109,17 +123,17 @@ fun BreedItem(breed: CatResponse,
                     .padding(4.dp)
                     .fillMaxSize()
             ) {
-                Image(painter = rememberImagePainter(data = breed.image,
-                    builder = {
-                        scale(Scale.FILL)
-                        placeholder(R.drawable.ic_launcher_foreground)
-                        transformations(CircleCropTransformation())
-                    }
-                ),
-                    contentDescription = breed.name, modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(0.2f)
-                )
+//                Image(painter = rememberImagePainter(data = breed.image,
+//                    builder = {
+//                        scale(Scale.FILL)
+//                        placeholder(R.drawable.ic_launcher_foreground)
+//                        transformations(CircleCropTransformation())
+//                    }
+//                ),
+//                    contentDescription = breed.name, modifier = Modifier
+//                        .fillMaxHeight()
+//                        .weight(0.2f)
+//                )
                 Column(
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
