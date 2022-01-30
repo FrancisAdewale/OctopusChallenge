@@ -1,6 +1,8 @@
 package com.example.octopuschallenge
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -16,6 +18,7 @@ import androidx.compose.runtime.*
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -49,15 +52,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Title() {
-    Text(
-        text = "Choose Breed",
-        style = MaterialTheme.typography.h1,
-        fontSize = 30.sp,
-        textAlign = TextAlign.Center
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
@@ -90,6 +84,10 @@ fun BreedItem(breed: CatResponse,
               index: Int,
               selecetedIndex: Int,
               onClick :(Int) -> Unit) {
+
+    val context = LocalContext.current
+    val intent = Intent(context, BreedInformation::class.java)
+
     val backgroundColour =
         if(index == selecetedIndex) MaterialTheme.colors.primary
         else MaterialTheme.colors.background
@@ -98,7 +96,12 @@ fun BreedItem(breed: CatResponse,
         modifier = Modifier
             .padding(8.dp, 4.dp)
             .fillMaxWidth()
-            .clickable { onClick(index) }
+            .clickable {
+                onClick(index)
+                intent.putExtra(BREED_NAME_KEY, breed.name!!)
+                intent.putExtra(ID_KEY, breed.id!!)
+                context.startActivity(intent)
+            }
             .height(110.dp),
         shape =  RoundedCornerShape(8.dp),
         elevation = 4.dp
@@ -109,14 +112,14 @@ fun BreedItem(breed: CatResponse,
                     .padding(4.dp)
                     .fillMaxSize()
             ) {
-                Image(painter = rememberImagePainter(data = breed.image,
+                Image(painter = rememberImagePainter(data = breed.image?.url,
                     builder = {
                         scale(Scale.FILL)
                         placeholder(R.drawable.ic_launcher_foreground)
                         transformations(CircleCropTransformation())
                     }
                 ),
-                    contentDescription = breed.name, modifier = Modifier
+                    contentDescription = "Breed", modifier = Modifier
                         .fillMaxHeight()
                         .weight(0.2f)
                 )
@@ -153,7 +156,6 @@ fun BreedItem(breed: CatResponse,
 fun GetBreedist(breedList: List<CatResponse>){
 
     var selectedIndex by remember { mutableStateOf(-1) }
-    //RecylerView
     LazyColumn{
         itemsIndexed(items = breedList) { index, item ->
             BreedItem(breed = item, index, selectedIndex ) {

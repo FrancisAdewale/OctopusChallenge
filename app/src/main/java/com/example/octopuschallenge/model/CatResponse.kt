@@ -9,6 +9,7 @@ data class CatResponse (
   @SerializedName("image"              ) var image            : Image?  = Image(),
   @SerializedName("name"               ) var name             : String? = null,
   @SerializedName("origin"             ) var origin           : String? = null,
+  @SerializedName("id"                 ) var id               : String? = null,
 
 
 )
