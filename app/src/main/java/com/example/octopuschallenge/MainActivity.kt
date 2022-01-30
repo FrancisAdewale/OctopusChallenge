@@ -52,15 +52,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Title() {
-    Text(
-        text = "Choose Breed",
-        style = MaterialTheme.typography.h1,
-        fontSize = 30.sp,
-        textAlign = TextAlign.Center
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
@@ -108,6 +99,7 @@ fun BreedItem(breed: CatResponse,
             .clickable {
                 onClick(index)
                 intent.putExtra(BREED_NAME_KEY, breed.name!!)
+                intent.putExtra(ID_KEY, breed.id!!)
                 context.startActivity(intent)
             }
             .height(110.dp),
@@ -120,17 +112,17 @@ fun BreedItem(breed: CatResponse,
                     .padding(4.dp)
                     .fillMaxSize()
             ) {
-//                Image(painter = rememberImagePainter(data = breed.image,
-//                    builder = {
-//                        scale(Scale.FILL)
-//                        placeholder(R.drawable.ic_launcher_foreground)
-//                        transformations(CircleCropTransformation())
-//                    }
-//                ),
-//                    contentDescription = breed.name, modifier = Modifier
-//                        .fillMaxHeight()
-//                        .weight(0.2f)
-//                )
+                Image(painter = rememberImagePainter(data = breed.image?.url,
+                    builder = {
+                        scale(Scale.FILL)
+                        placeholder(R.drawable.ic_launcher_foreground)
+                        transformations(CircleCropTransformation())
+                    }
+                ),
+                    contentDescription = "Breed", modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(0.2f)
+                )
                 Column(
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
@@ -164,7 +156,6 @@ fun BreedItem(breed: CatResponse,
 fun GetBreedist(breedList: List<CatResponse>){
 
     var selectedIndex by remember { mutableStateOf(-1) }
-    //RecylerView
     LazyColumn{
         itemsIndexed(items = breedList) { index, item ->
             BreedItem(breed = item, index, selectedIndex ) {
