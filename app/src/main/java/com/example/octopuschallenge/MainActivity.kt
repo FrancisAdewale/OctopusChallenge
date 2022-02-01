@@ -19,6 +19,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -32,6 +33,8 @@ import com.example.model.CatResponse
 import com.example.model.Image
 import com.example.octopuschallenge.ui.theme.OctopusChallengeTheme
 import com.example.octopuschallenge.viewmodel.MainActivityViewModel
+
+const val BREED_LIST_TEST_TAG = "breed_list_test_tag"
 
 class MainActivity : ComponentActivity() {
 
@@ -156,7 +159,7 @@ fun BreedItem(breed: CatResponse,
 fun GetBreedist(breedList: List<CatResponse>){
 
     var selectedIndex by remember { mutableStateOf(-1) }
-    LazyColumn{
+    LazyColumn(modifier = Modifier.testTag(BREED_LIST_TEST_TAG)){
         itemsIndexed(items = breedList) { index, item ->
             BreedItem(breed = item, index, selectedIndex ) {
                 selectedIndex = it

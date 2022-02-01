@@ -1,0 +1,47 @@
+commit ff0c3a54a8dc703ec836deff3ce7b20e98b6d551
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sun Jan 30 21:38:22 2022 +0000
+
+    displays 100 images of selected breed
+
+commit 9666dc4449748602662dac96e98c195240752594
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sun Jan 30 18:38:29 2022 +0000
+
+    can display selected breed data
+
+commit a2c515183ad91d54524f41ddcf48468e5a6ba673
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sun Jan 30 10:54:43 2022 +0000
+
+    add selected breed end point
+
+commit 1b883899347a6590f72be858e2db8352a5586a63
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sat Jan 29 15:08:46 2022 +0000
+
+    add api_key
+
+commit 866293ebdd2c666ad46729c340bf95027e0b931f
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sat Jan 29 14:51:33 2022 +0000
+
+    displays all breeds and their origin
+
+commit 20875af93212646b876875fae1d94a1aaf566a87
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sat Jan 29 13:32:59 2022 +0000
+
+    add MVVM architecture pattern
+
+commit 86966b1f30ac9ee9785f1e594605756f75219ee3
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sat Jan 29 13:18:06 2022 +0000
+
+    json to data class models
+
+commit ff4ac98777cf6e7fe758642f7270e956916c084c
+Author: Francis Adewale <francisadewale1992@gmail.com>
+Date:   Sat Jan 29 11:10:23 2022 +0000
+
+    initial commit
