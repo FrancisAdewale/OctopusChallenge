@@ -22,5 +22,3 @@ of the json response, it was a simple error that I spent too much time on.
 
 I was thinking about using Koin for dependency injection but I didn't get around to it.
 
-
-
